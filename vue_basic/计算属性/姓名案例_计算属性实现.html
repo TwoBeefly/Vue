@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+        姓：<input type="text" v-model="firstName"><br>
+        名：<input type="text" v-model="Lastname"><br>
+        <!-- 采用方法的形式实现 -->
+        全名：<span>{{fullName}}</span>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      const vm = new Vue({
+        data(){
+          return{
+            firstName:'张',
+            Lastname:'三'
+          }
+        },
+        //计算属性,经过计算得到的属性，不会直接出现在vm的属性之中
+        //优势：计算属性最终出现在vm上，直接读取使用即可
+        computed:{
+          fullName:{
+            //读取fullName时，get会被调用，返回值为fullName的值
+             get(){
+              //基于firstName和lastName的计算
+              return this.firstName+this.Lastname
+             },
+             //计算属性如果要修改，必须写set函数去相应修改，且set中要引起计算时依赖的数据发生改变
+             set(value){
+              const arry = [...value]
+              this.firstName = arry[0]
+              this.Lastname = arry[1]
+             }
+          }
+        }
+      })
+      vm.$mount('#root')
+    </script>
+  </body>
+</html>
