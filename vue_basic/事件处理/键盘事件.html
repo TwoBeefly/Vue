@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <h1>第{{num}}次测试</h1>
+      <!-- enter表示键盘上的回车，keyup.enter表示松开回车 -->
+      <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      const vm = new Vue({
+        data(){
+            return{
+                num:1
+            }
+        },
+        methods:{
+            showInfo(event){
+                console.log(event.target.value);
+            }
+        }
+      })
+      vm.$mount('#root')
+    </script>
+  </body>
+</html>
