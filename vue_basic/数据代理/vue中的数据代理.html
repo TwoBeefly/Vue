@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <h1>名字：{{name}}</h1>
+      <h2>性别：{{age}}</h2>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+      //通过vm来修改data中的name和age就是vue中的数据代理，原理：Object.defineProperty
+      const vm = new Vue({
+          el:'#root',
+          data:{
+              name:'pjc',
+              age:'18'
+          }
+      })
+    </script>
+  </body>
+</html>     
