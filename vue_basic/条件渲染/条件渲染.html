@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root" >
+      <h1>当前n值是:{{n}}</h1>
+      <button @click = "n++">点击后n++</button>
+      <button @click = "n--">点击后n--</button>
+      <h2 v-if="n==1">peter</h2>
+      <h2 v-else-if = 'n==2'>bob</h2>
+      <h2 v-else = 'n==3'>liming</h2>
+        <!-- v-show 用于是否隐藏该标签 -->
+      <h2 v-show="n==1">peter</h2>
+      
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      const vm = new Vue({
+        data() {
+            return {
+                n:1,
+            }
+        },
+      })
+      vm.$mount('#root')
+    </script>
+  </body>
+</html>
