@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+        <ul>
+            <li v-for="(item, index) in persons" :key="index">
+                {{item.name}}-{{item.age}}
+            </li>
+            </li>
+            <br>
+            <li v-for="(item, index) of cars" :key="index">
+                {{item}}-{{index}}
+            </li>
+        </ul>  
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+        // 熟悉v-for的用法
+      const vm = new Vue({
+        data() {
+            return {
+                persons:[{
+                    id:0,name:"pyz",age:16
+                },{
+                    id:1,name:"lyh",age:17
+                },{
+                    id:2,name:"pdd",age:18
+                }],
+                cars:{
+                    name:'mini',
+                    price:70,
+                    color:"black"
+                }
+            }
+        },
+      })
+      vm.$mount('#root')
+    </script>
+  </body>
+</html>
