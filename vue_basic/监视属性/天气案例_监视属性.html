@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <h1>今天天气很{{weather}}</h1>
+      <button @click = 'contral'>切换天气</button>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      const vm = new Vue({
+        data() {
+            return {
+                isHot:true
+            }
+        },
+        methods: {
+          contral(event){
+            this.isHot = !this.isHot
+          }
+        },
+        computed:{
+            weather(){
+                    return this.isHot ? '热':'冷'
+                }
+        },
+        watch:{
+          isHot:{
+            //immediate:true, //初始化时让handler调用一次
+            //当isHot发生改变时，调用handler函数
+            handler(newValue,oldValue){
+              console.log("isHot属性被修改了",newValue,oldValue);
+            }
+          }
+        }
+      })
+      vm.$mount('#root')
+      // vm.$watch('isHot',{
+      //   handler(newValue,oldValue){
+      //         console.log("isHot属性被修改了",newValue,oldValue);
+      //       }
+      // })
+    </script>
+  </body>
+</html>
