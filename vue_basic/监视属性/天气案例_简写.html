@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <h2>数字a是{{a}}</h2>
+      <button @click = "a++">a++</button>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      const vm = new Vue({
+        data() {
+            return {
+                  a:1
+            }
+        },
+        watch:{
+          // a:{
+          //   handler(newValue,oldValue){
+          //     console.log(newValue,oldValue);
+          //   }
+          // }
+          //简写,和计算属性同样
+          a(newValue,oldValue){
+            console.log(newValue,oldValue);
+          }
+        }
+      })
+      vm.$mount('#root')
+      //另一种简写方式
+      // vm.$watch(a,function a(newValue,oldValue) {
+      //   console.log(newValue,oldValue);
+      // })
+    </script>
+  </body>
+</html>
