@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <h2>数字a是{{num.a}},数字b是{{num.b}}</h2>
+      <button @click = "num.a++">a++</button>
+      <button @click = "num.b++">b++</button>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      const vm = new Vue({
+        data() {
+            return {
+                num:{
+                  a:1,
+                  b:2
+                }
+            }
+        },
+        watch:{
+          num:{
+            immediate:true,
+            //监视num对象中的属性需要设置deep属性为true
+            deep:true,
+            handler(newValue,oldValue){
+              console.log(newValue,oldValue);
+            }
+          }
+        }
+      })
+      vm.$mount('#root')
+    </script>
+  </body>
+</html>
