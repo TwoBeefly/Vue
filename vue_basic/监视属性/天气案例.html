@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <h1>今天天气很{{weather}}</h1>
+      <button>切换天气</button>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      const vm = new Vue({
+        data() {
+            return {
+                isHot:true
+            }
+        },
+        computed:{
+            weather:{
+                get(){
+                    return this.isHot ? '热':'冷'
+                },
+                set(value){
+                    this.isHot = value
+                }
+            }
+        }
+      })
+      vm.$mount('#root')
+    </script>
+  </body>
+</html>
