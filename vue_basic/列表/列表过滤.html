@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入名字" v-model="keyWords">
+        <ul>
+            <li v-for="(item, index) in newPersons" :key="item.id">
+                {{item.name}}-{{item.age}}-{{item.gender}}
+            </li>
+        </ul>  
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+      //用watch实现
+      //#region
+      // const vm = new Vue({
+      //   data() {
+      //       return {
+      //           persons:[{
+      //               id:0,name:"马冬梅",age:16,gender:'女'
+      //           },{
+      //               id:1,name:"周冬雨",age:17,gender:'女'
+      //           },{    
+      //               id:2,name:"温兆伦",age:18,gender:'男'
+      //           },{
+      //               id:3,name:"周杰伦",age:19,gender:'男'
+      //           }],
+      //           keyWords:'',
+      //           arry:[]
+      //       }
+      //   },
+      //   watch:{
+      //     keyWords:{
+      //         immediate:true,
+      //         handler(newValue){
+      //           this.arry = this.persons.filter((persons)=>{
+      //             return persons.name.indexOf(newValue) != -1
+      //           })
+      //       }
+      //     }
+      //   }
+      // })
+      // vm.$mount('#root')
+      //#endregion
+      
+      //用computed实现
+      const vm = new Vue({
+        data() {
+            return {
+                persons:[{
+                    id:0,name:"马冬梅",age:16,gender:'女'
+                },{
+                    id:1,name:"周冬雨",age:17,gender:'女'
+                },{    
+                    id:2,name:"温兆伦",age:18,gender:'男'
+                },{
+                    id:3,name:"周杰伦",age:19,gender:'男'
+                }],
+                keyWords:'',
+            }
+        },
+        computed:{
+          newPersons(){
+            return this.persons.filter((persons)=>{
+              return item.persons.indexOf(this.keyWords) != -1
+            })
+          }
+        }
+      })
+      vm.$mount('#root')
+    </script>
+  </body>
+</html>
