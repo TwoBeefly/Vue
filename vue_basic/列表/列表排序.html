@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入名字" v-model="keyWords">
+        <button @click="sortType = 0">原顺序</button>
+        <button @click="sortType = 2">升序</button>
+        <button @click="sortType = 1">降序</button>
+        <ul>
+            <li v-for="(item, index) in newPersons" :key="item.id">
+                {{item.name}}-{{item.age}}-{{item.gender}}
+            </li>       
+        </ul>  
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。  
+      //用computed实现
+      const vm = new Vue({
+        data() {
+            return {
+                persons:[{
+                    id:0,name:"马冬梅",age:24,gender:'女'
+                },{
+                    id:1,name:"周冬雨",age:17,gender:'女'
+                },{    
+                    id:2,name:"温兆伦",age:30,gender:'男'
+                },{
+                    id:3,name:"周杰伦",age:19,gender:'男'
+                }],
+                keyWords:"",
+                sortType:0 //0代表原序，1代表升序，2代表降序
+            }
+        },
+        computed:{
+          newPersons(){
+            const arry = this.persons.filter((item)=>{
+              return item.name.indexOf(this.keyWords) !== -1
+            })
+            //判断是否需要排序
+            if (this.sortType) {
+              arry.sort((a,b)=>{
+                return this.sortType == 1 ? b.age-a.age : a.age-b.age
+              })
+            }
+            return arry
+          }
+        }
+      })
+      vm.$mount('#root')
+    </script>
+  </body>
+</html>
