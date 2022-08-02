@@ -12,7 +12,7 @@
         <ul>
             <li v-for="(item, index) in newPersons" :key="item.id">
                 {{item.name}}-{{item.age}}-{{item.gender}}
-            </li>
+            </li>       
         </ul>  
     </div>
     <script type="text/javascript">
@@ -68,7 +68,7 @@
         computed:{
           newPersons(){
             return this.persons.filter((persons)=>{
-              return item.persons.indexOf(this.keyWords) != -1
+              return persons.name.indexOf(this.keyWords) !== -1
             })
           }
         }
