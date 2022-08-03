@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <h1 :style="{opacity}">欢迎学习</h1>
+      <button @click="clear">停止变化</button>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+      const vm = new Vue({
+        data() {
+            return {
+                opacity:1
+            }
+        },
+        methods: {
+            clear(){
+                clearInterval(this.timer)
+            }
+        },
+        //Vue完成模板的解析并把初始的真是DOM元素放入页面后（挂载完毕）调用mounted
+        mounted() {
+            this.timer = setInterval(()=>{
+                this.opacity -= 0.01
+                if (this.opacity <= 0) {
+                    this.opacity = 1
+                }
+            },16)
+        },
+      });
+      vm.$mount('#root')
+      //生命周期：
+      //1、又名：生命周期回调函数、生命周期函数、生命周期钩子
+      //2、是Vue在关键时刻帮我们调用的一些特殊名称的函数
+      //3、生命周期函数的名字不可更改，但函数的具体内容是程序原根据需求编写的
+      //4、生命周期函数中的this志向是vm或组件实例对象
+    </script>
+  </body>
+</html>
