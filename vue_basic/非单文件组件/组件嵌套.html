@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <!-- 3、编写组件标签 -->
+      <app></app>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      const student = {
+        template:`
+            <div>
+                <h2>学生姓名：{{name}}</h2>
+                <h2>学生年龄：{{age}}</h2>
+            </div>`,
+        data() {
+            return {
+                name:'Bob',
+                age:'22'
+            }
+        },
+      }
+
+      const school = Vue.extend({
+        template:`
+        <div>
+            <h2>学校名称：{{name}}</h2>
+            <h2>学校地址：{{address}}</h2>
+            <student></student>
+        </div>`,
+        data() {
+            return {
+              name:'西邮',
+              address:'西安',
+            }
+        },
+        components:{
+            student
+        }
+      })
+
+      const hospital = {
+        template:`
+        <div>
+            <h2>医院名称：{{name}}</h2>
+            <h2>医院地址：{{address}}</h2>
+        </div>`,
+        data() {
+            return {
+                name:'人民医院',
+                address:'西安'
+            }
+        },
+      }
+
+      const app = {
+        template:`
+        <div>
+            <school></school>
+            <hospital></hospital>
+        </div>`,
+        components:{
+            school,
+            hospital
+        }
+      }
+
+      new Vue({
+          el:'#root',
+          components:{
+            app
+          }
+      })
+    </script>
+  </body>
+</html>
