@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!--准备一个容器-->
+    <div id="root">
+      <!-- 3、编写组件标签 -->
+      <school></school>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //设置为 false 以阻止 vue 在启动时生成生产提示。
+
+      //1、创建school组件
+      const school = Vue.extend({
+        //使用name标签定义开发者工具中的组件名
+        name:'myDefine',
+        template:`
+        <div>
+            <h2>学校名称：{{name}}</h2>
+            <h2>学校地址：{{address}}</h2>
+        </div>`,
+        data() {
+            return {
+              name:'西邮',
+              address:'西安',
+            }
+        },
+      })
+
+      //创建vm
+      new Vue({
+          el:'#root',
+          //2、注册组件(局部注册)
+          components:{
+            school,
+          }
+      })
+    </script>
+  </body>
+</html>
